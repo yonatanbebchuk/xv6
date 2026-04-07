@@ -19,7 +19,12 @@
     ret
 
 // You need to add your new SYSCALL by the same way(here is a good place)
-
+#define SYSCALLPS(name) \
+  .global name; \
+  name: \
+    movl $22, %eax; \
+    int $T_SYSCALL; \
+    ret
 
 SYSCALLFORK(fork) //instead of SYSCALL(fork) !!!
 //SYSCALL(fork)
@@ -43,3 +48,4 @@ SYSCALL(getpid)
 SYSCALL(sbrk)
 SYSCALL(sleep)
 SYSCALL(uptime)
+SYSCALLPS(cps133)

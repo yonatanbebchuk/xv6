@@ -89,3 +89,11 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+// Print the currently running processes to the standard output.
+int
+sys_cps133(void)
+{
+	return cps133();
+}
+

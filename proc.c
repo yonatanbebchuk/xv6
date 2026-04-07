@@ -532,3 +532,11 @@ procdump(void)
     cprintf("\n");
   }
 }
+
+// Print the currently running processes to the standard output.
+int
+cps133(void)
+{
+	cprintf("Hello World!\n");
+	return 1;
+}
