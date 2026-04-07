@@ -560,7 +560,7 @@ cps133(void)
 		// Get process state name
 		char *state_str = (p->state >= 0 && p->state < 6) ? states[p->state] : "???";
 
-		cprintf("%s \t %d \t %s \t %d \t %d\n", p->name, p->pid, state_str, ppid, p->sz);
+		cprintf("%s \t %d \t %s \t %d \t %d \n", p->name, p->pid, state_str, ppid, p->sz);
 	}
 	release(&ptable.lock);
 	return 22;
