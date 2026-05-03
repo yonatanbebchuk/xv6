@@ -151,7 +151,7 @@ static int (*syscalls[])(void) = {
 [SYS_getcpu] sys_getcpu,
 [SYS_getmem] sys_getmem,
 [SYS_kmemtest] sys_kmemtest,
-[SYS_ps] sys_cps133,
+[SYS_cps133] sys_cps133,
 };
 
 void
