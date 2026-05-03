@@ -1,9 +1,6 @@
-// [Yonatan Bebchuk 209805233] usys.S modification
-
 #include "syscall.h"
 #include "traps.h"
 
-// All "standard" SYSCALLS are added by this:
 #define SYSCALL(name) \
   .globl name; \
   name: \
@@ -11,25 +8,7 @@
     int $T_SYSCALL; \
     ret
 
-// !!!! Adding "new" "SYSCALLfork(fork)" instead of SYSCALL(fork) 
-//  without changing syscall.h !!! 1 is SYSCALL number, look in syscall.c
-#define SYSCALLFORK(name) \
-  .globl name; \
-  name: \
-    movl $1, %eax; \
-    int $T_SYSCALL; \
-    ret
-
-// You need to add your new SYSCALL by the same way(here is a good place)
-#define SYSCALLPS(name) \
-  .global name; \
-  name: \
-    movl $22, %eax; \
-    int $T_SYSCALL; \
-    ret
-
-SYSCALLFORK(fork) //instead of SYSCALL(fork) !!!
-//SYSCALL(fork)
+SYSCALL(fork)
 SYSCALL(exit)
 SYSCALL(wait)
 SYSCALL(pipe)
@@ -50,4 +29,14 @@ SYSCALL(getpid)
 SYSCALL(sbrk)
 SYSCALL(sleep)
 SYSCALL(uptime)
-SYSCALLPS(cps133)
+SYSCALL(mount)
+SYSCALL(umount)
+SYSCALL(printmounts)
+SYSCALL(printdevices)
+SYSCALL(unshare)
+SYSCALL(usleep)
+SYSCALL(ioctl)
+SYSCALL(getppid)
+SYSCALL(getcpu)
+SYSCALL(getmem)
+SYSCALL(kmemtest)
