@@ -857,20 +857,31 @@ cps133(void)
 	struct proc *p;
 
 	acquire(&ptable.lock);
-	cprintf("name \t pid \t state \t \t ppid \t size \n");
+	cprintf("name \t pid \t state \t \t extpid \t ppid \t size \t cputime \n");
 	for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
 		// Skip unused processes
 		if(p->state == UNUSED)
 		  continue;
 
-		// Get PPID; 0 if root process
-		int ppid = (p->parent) ? p->parent->pid : 0;
+		char *name = p->name;
+
+		int pid = 0;
 
 		// Get process state name
 		char *state_str = (p->state >= 0 && p->state < 6) ? states[p->state] : "???";
 
-		cprintf("%s \t %d \t %s \t %d \t %d \n", p->name, p->pid, state_str, ppid, p->sz);
+		// Get external process ID
+		int extpid = 0;
+
+		// Get PPID; 0 if root process
+		int ppid = 0;
+
+		uint size = p->sz;
+
+		unsigned int cpu_time = p->cpu_time;
+
+		cprintf("%s \t %d \t %s \t \t %d \t %d \t %d \t %d \n", name, pid, state_str, extpid, ppid, size, cpu_time);
 	}
 	release(&ptable.lock);
-	return 22;
+	return -1;
 }
