@@ -1,3 +1,5 @@
+// [Yonatan Bebchuk 209805233] syscall.h modification
+
 // System call numbers
 #define SYS_fork    1
 #define SYS_exit    2
@@ -31,3 +33,4 @@
 #define SYS_getcpu 30
 #define SYS_getmem 31
 #define SYS_kmemtest 32
+#define SYS_ps 33

@@ -1,3 +1,5 @@
+// [Yonatan Bebchuk 209805233] user.h modification
+
 #ifndef XV6_USER_H
 #define XV6_USER_H
 
@@ -37,6 +39,7 @@ int getppid(void);
 int getcpu(void);
 int getmem(void);
 int kmemtest(void);
+int cps133(void);
 
 int mount(const char*, const char*, const char *);
 int umount(const char*);

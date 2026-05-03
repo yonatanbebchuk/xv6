@@ -1,3 +1,5 @@
+// [Yonatan Bebchuk 209805233] usys.S modification
+
 #include "syscall.h"
 #include "traps.h"
 
@@ -40,3 +42,4 @@ SYSCALL(getppid)
 SYSCALL(getcpu)
 SYSCALL(getmem)
 SYSCALL(kmemtest)
+SYSCALL(ps)

@@ -1,3 +1,5 @@
+// [Yonatan Bebchuk 209805233] defs.h modification
+
 struct buf;
 struct context;
 struct file;
@@ -181,6 +183,7 @@ int             wait(int*);
 void            wakeup(void*);
 void            yield(void);
 int             cgroup_move_proc(struct cgroup * cgroup, int pid);
+int 			cps133(void);
 
 // swtch.S
 void            swtch(struct context**, struct context*);

@@ -1,3 +1,5 @@
+# [Yonatan Bebchuk 209805233] Makefile modification
+
 MAKEFILE_DIRECTORY := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 MMNFILES = proc.o syscall.o sysproc.o usys.o
@@ -214,6 +216,7 @@ UPROGS=\
         _demo_pid_ns \
         _demo_mount_ns \
         _ioctltests \
+    _ps\
 
 INTERNAL_DEV=\
 	internal_fs_a\
@@ -300,7 +303,7 @@ qemu-nox-gdb: fs.img xv6.img .gdbinit
 EXTRA=\
 	mkfs.c ulib.c user.h cat.c echo.c forktest.c grep.c kill.c\
         ln.c ls.c mkdir.c mounttest.c rm.c stressfs.c usertests.c pidns_tests.c wc.c zombie.c\
-        printf.c umalloc.c mount.c umount.c timer.c cpu.c cgroupstests.c ioctltests.c \
+        printf.c umalloc.c mount.c umount.c timer.c cpu.c cgroupstests.c ioctltests.c ps.c\
 	README dot-bochsrc *.pl toc.* runoff runoff1 runoff.list\
 	.gdbinit.tmpl gdbutil\
 

@@ -1,3 +1,5 @@
+// [Yonatan Bebchuk 209805233] sysproc.c modification
+
 #include "types.h"
 #include "x86.h"
 #include "defs.h"
@@ -253,3 +255,11 @@ int
 sys_kmemtest(void) {
   return kmemtest();
 }
+
+// Print the currently running processes to the standard output.
+int
+sys_cps133(void)
+{
+	return cps133();
+}
+

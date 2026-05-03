@@ -1,3 +1,5 @@
+// [Yonatan Bebchuk 209805233] proc.c modification
+
 #include "types.h"
 #include "defs.h"
 #include "param.h"
@@ -838,4 +840,37 @@ struct cgroup *proc_get_cgroup(void)
   if (proc)
      cg = proc->cgroup;
   return cg;
+}
+
+// Print the currently running processes to the standard output.
+int
+cps133(void)
+{
+	static char *states[] = {
+	  [UNUSED]    "UNUSED",
+	  [EMBRYO]    "EMBRYO",
+	  [SLEEPING]  "SLEEPING",
+	  [RUNNABLE]  "RUNNABLE",
+	  [RUNNING]   "RUNNING",
+	  [ZOMBIE]    "ZOMBIE"
+	};
+	struct proc *p;
+
+	acquire(&ptable.lock);
+	cprintf("name \t pid \t state \t \t ppid \t size \n");
+	for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+		// Skip unused processes
+		if(p->state == UNUSED)
+		  continue;
+
+		// Get PPID; 0 if root process
+		int ppid = (p->parent) ? p->parent->pid : 0;
+
+		// Get process state name
+		char *state_str = (p->state >= 0 && p->state < 6) ? states[p->state] : "???";
+
+		cprintf("%s \t %d \t %s \t %d \t %d \n", p->name, p->pid, state_str, ppid, p->sz);
+	}
+	release(&ptable.lock);
+	return 22;
 }
